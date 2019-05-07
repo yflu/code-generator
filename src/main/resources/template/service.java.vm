@@ -1,0 +1,26 @@
+package ${package.Service};
+
+import com.baomidou.mybatisplus.plugins.Page;
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+
+/**
+ * @title:
+ * @Description: $!{table.comment}相关接口
+ * @author: $!{author}
+ * @date $!{date}
+ * @version: 1.0
+ */
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    /**
+     * 分页查询$!{table.comment}
+     * @param filters
+     * @param sorts
+     * @param size
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    Page<$!{entity}> search(String filters, String sorts, int size, int page) throws Exception;
+}

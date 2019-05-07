@@ -1,0 +1,19 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import ${superMapperClassPackage};
+
+/**
+ * @title:
+ * @Description: $!{table.comment} Mapper接口
+ * @author: $!{author}
+ * @date $!{date}
+ * @version: 1.0
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+
+}
+#end

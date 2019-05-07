@@ -1,0 +1,52 @@
+export const tableOption = {
+    tip: false,
+    dialogWidth: '60%',
+    size: 'small',
+    selection: true,
+    highlightCurrentRow: true,
+    page: false,
+    addBtn: false,
+    editBtn: false,
+    delBtn: false,
+    columnBtn: false,
+    refreshBtn: false,
+    filterBtn: false,
+    stripe: true,
+    menuAlign: 'center',
+    align: 'center',
+    labelWidth: 110,
+    height: 390,
+    menuWidth: 60,
+    column: [
+    #foreach($field in ${table.fields})
+        #if(${field.name.equals("updateTime")}
+         || ${field.name.equals("createTime")}
+         || ${field.name.equals("create_user")}
+         || ${field.name.equals("update_user")}
+         || ${field.name.equals("delFlag")}
+        )
+
+        #else
+        {
+            width: 100,
+            label: '${field.comment}',
+            prop: '${field.propertyName}',
+            align: 'center',
+            fixed: true,
+            sortable: true
+        },
+        #end
+    #end
+        {
+            label: '创建时间',
+            prop: 'createTime',
+            valueFormat: 'yyyy-MM-dd HH:mm:ss',
+            type: 'datetime',
+            align: 'center',
+            editDisplay: false,
+            addDisplay: false,
+            readonly: true,
+            width: 200
+        }]
+};
+

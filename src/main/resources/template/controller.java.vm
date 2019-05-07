@@ -1,0 +1,103 @@
+package $!{package.Controller};
+
+import com.baomidou.mybatisplus.plugins.Page;
+import com.nflg.erp.common.bean.ApiName;
+import com.nflg.erp.common.bean.ServiceUrls;
+import $!{package.Entity}.$!{entity};
+import $!{package.Service}.$!{entity}Service;
+import com.rs.common.util.Result;
+#if($!{superControllerClassPackage})
+import $!{superControllerClassPackage};
+#end
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * @title:
+ * @Description: $!{table.comment}相关功能
+ * @author: $!{author}
+ * @date $!{date}
+ * @version: 1.0
+ */
+@Slf4j
+@RestController
+@RequestMapping("/$!{table.entityPath}")
+@ApiModel(value="$!{table.comment}", description="$!{table.comment}")
+public class $!{table.controllerName} extends $!{superControllerClass} {
+
+    @Autowired
+    private $!{entity}Service $!{table.entityPath}Service;
+
+    /**
+     * 分页查询$!{table.comment}
+     *
+     * @param filters
+     * @param sorts
+     * @param size
+     * @param page
+     * @return
+     */
+    @GetMapping(value = ServiceUrls.*.QUERY_PAGE)
+    @ApiOperation(value = "返回$!{table.comment}集合", notes = "返回$!{table.comment}集合")
+    @Cacheable(value = ApiName.*, key = "'search_erp_$!{table.name}_conditions_filters='+#p0+'_and_sorts='+#p1+'_and_size='+#p2+'_and_page='+#p3")
+    public Result<$!{entity}> list(
+            @ApiParam(name = "filters", value = "过滤器，为空检索所有条件", defaultValue = "")
+            @RequestParam(value = "filters", required = false) String filters,
+            @ApiParam(name = "sorts", value = "排序，规则参见说明文档", defaultValue = "")
+            @RequestParam(value = "sorts", required = false) String sorts,
+            @ApiParam(name = "size", value = "分页大小", defaultValue = "15")
+            @RequestParam(value = "size", required = false) int size,
+            @ApiParam(name = "page", value = "页码", defaultValue = "1")
+            @RequestParam(value = "page", required = false) int page) throws Exception {
+        Page result = $!{table.entityPath}Service.search(filters, sorts, size, page);
+        return success(result);
+    }
+
+    /**
+     * 新增$!{table.comment}
+     *
+     * @param $!{table.entityPath}
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    @ApiOperation(value = "新增$!{table.comment}", notes = "新增$!{table.comment}")
+    @CacheEvict(value = ApiName.*, allEntries = true)
+    public Result<Boolean> create(
+            @ApiParam(name = "json_model", value = "", defaultValue = "")
+            @RequestBody @Validated $!{entity} $!{table.entityPath}) {
+        return success($!{table.entityPath}Service.insert($!{table.entityPath}));
+    }
+
+    /**
+     * 编辑$!{table.comment}
+     * @param $!{table.entityPath}
+     * @return
+     */
+    @RequestMapping( method = RequestMethod.PUT)
+    @ApiOperation(value = "编辑$!{table.comment}", notes = "编辑$!{table.comment}")
+    public Result<Boolean> edit(
+            @ApiParam(name = "json_model", value = "", defaultValue = "")
+            @RequestBody @Validated $!{entity} $!{table.entityPath}){
+        return success($!{table.entityPath}Service.updateById($!{table.entityPath}));
+    }
+
+    /**
+     * 删除$!{table.comment}
+     * @param id
+     * @return
+     */
+    @RequestMapping(value ="/{id}", method = RequestMethod.DELETE)
+    @ApiOperation(value = "删除$!{table.comment}", notes = "删除$!{table.comment}")
+    public  Result<Boolean> delete(
+            @ApiParam(name = "id", value = "id", defaultValue = "")
+            @PathVariable Integer id){
+        return success($!{table.entityPath}Service.deleteById(id));
+    }
+}

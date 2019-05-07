@@ -1,0 +1,45 @@
+import request from '@/router/axios';
+
+export function fetchList(query) {
+    return request({
+        url: '/erp//page',
+        method: 'get',
+        params: query
+    });
+}
+
+export function addObj(obj) {
+    return request({
+        url: '/erp/',
+        method: 'post',
+        data: obj
+    });
+}
+
+export function getObj(id) {
+    return request({
+        url: '/erp//' + id,
+        method: 'get'
+    });
+}
+
+export function delObj(id) {
+    return request({
+        url: '/erp//' + id,
+        method: 'delete'
+    });
+}
+
+export function putObj(obj) {
+    return request({
+        url: '/erp/',
+        method: 'put',
+        data: obj
+    });
+}
+
+export function delBatchObj(idList) {
+    return request({
+        url: '/erp//delBatch/' + idList,
+        method: 'delete'
+});

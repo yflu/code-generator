@@ -1,0 +1,33 @@
+package ${package.ServiceImpl};
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.rs.common.bean.mybatisutil.SpliceUtil;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * @title:
+ * @Description: $!{table.comment}相关接口实现
+ * @author: $!{author}
+ * @date $!{date}
+ * @version: 1.0
+ */
+@Service
+@Transactional
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+    @Override
+    public Page<$!{entity}> search(String filters, String sorts, int size, int page) {
+        EntityWrapper<$!{entity}> ew = new EntityWrapper<$!{entity}>();
+        Page<$!{entity}> page1 = new Page<>(page, size);
+        ew = SpliceUtil.search(filters, sorts, ew);
+        Page page2 = this.selectPage(page1, ew);
+        return page2;
+    }
+}
