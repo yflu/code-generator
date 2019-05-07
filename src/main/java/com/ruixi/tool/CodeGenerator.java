@@ -131,7 +131,7 @@ public class CodeGenerator {
         files.add(new FileOutConfig("/template/const.vue.js.vm") {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                String expand = gc.getOutputDir() + (File.separator + pc.getParent() + "." + "vue.const" + childFolder).replace(".", File.separator);
+                String expand = gc.getOutputDir() + (File.separator + pc.getParent() + "." + "vue.const." + childFolder).replace(".", File.separator);
                 String entityFile = String.format((expand + File.separator + "%s" + ".js"), tableInfo.getEntityName());
                 return entityFile;
             }

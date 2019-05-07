@@ -18,6 +18,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 /**
  * @title:
@@ -66,7 +67,7 @@ public class $!{table.controllerName} extends $!{superControllerClass} {
      * @param $!{table.entityPath}
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     @ApiOperation(value = "新增$!{table.comment}", notes = "新增$!{table.comment}")
     @CacheEvict(value = ApiName.*, allEntries = true)
     public Result<Boolean> create(
@@ -80,7 +81,7 @@ public class $!{table.controllerName} extends $!{superControllerClass} {
      * @param $!{table.entityPath}
      * @return
      */
-    @RequestMapping( method = RequestMethod.PUT)
+    @PutMapping
     @ApiOperation(value = "编辑$!{table.comment}", notes = "编辑$!{table.comment}")
     public Result<Boolean> edit(
             @ApiParam(name = "json_model", value = "", defaultValue = "")
@@ -93,11 +94,23 @@ public class $!{table.controllerName} extends $!{superControllerClass} {
      * @param id
      * @return
      */
-    @RequestMapping(value ="/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = ServiceUrls.*.ID)
     @ApiOperation(value = "删除$!{table.comment}", notes = "删除$!{table.comment}")
     public  Result<Boolean> delete(
             @ApiParam(name = "id", value = "id", defaultValue = "")
             @PathVariable Integer id){
         return success($!{table.entityPath}Service.deleteById(id));
+    }
+
+    /**
+     * 批量删除$!{table.comment}
+     * @param idList
+     * @return
+     */
+    @DeleteMapping(value = ServiceUrls.*.ID_LIST)
+    @ApiOperation(value = "批量删除$!{table.comment}", notes = "批量删除$!{table.comment}")
+    public Result delBatch(@ApiParam(name = "idList", value = "idList", defaultValue = "")
+            @PathVariable List<Integer> idList) {
+        return success($!{table.entityPath}.deleteBatchIds(idList));
     }
 }
