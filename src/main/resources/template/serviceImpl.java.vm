@@ -6,7 +6,6 @@ import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.rs.common.bean.mybatisutil.SpliceUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
