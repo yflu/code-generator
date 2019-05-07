@@ -9,11 +9,12 @@ import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 public class CodeGenerator {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         //用来获取Mybatis-Plus.properties文件的配置信息
         final ResourceBundle rb = ResourceBundle.getBundle("mybatis-plus");
 
@@ -21,7 +22,7 @@ public class CodeGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setAuthor(rb.getString("author"));
+        gc.setAuthor(new String(rb.getString("author").getBytes("ISO-8859-1"), "GBK"));
         gc.setOutputDir(rb.getString("OutputDir"));
         gc.setFileOverride(true);// 是否覆盖同名文件，默认是false
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false
