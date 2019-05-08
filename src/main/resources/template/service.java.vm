@@ -5,8 +5,7 @@ import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
 
 /**
- * @title:
- * @Description: $!{table.comment}相关接口
+ * @Description: $!{table.comment} 服务
  * @author: $!{author}
  * @date $!{date}
  * @version: 1.0

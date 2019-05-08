@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @title:
- * @Description: $!{table.comment}相关接口实现
+ * @Description: $!{table.comment} 服务实现
  * @author: $!{author}
  * @date $!{date}
  * @version: 1.0
