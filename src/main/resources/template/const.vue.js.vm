@@ -32,7 +32,6 @@ export const tableOption = {
             label: '${field.comment}',
             prop: '${field.propertyName}',
             align: 'center',
-            fixed: true,
             sortable: true
         },
         #end
