@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @version: 1.0
  */
 @Service
-@Transactional
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
     @Override
